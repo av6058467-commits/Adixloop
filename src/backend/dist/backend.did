@@ -1,0 +1,379 @@
+type WithdrawalRequest = 
+ record {
+   amount: nat;
+   upiId: text;
+ };
+type WalletError = 
+ variant {
+   insufficientBalance;
+   invalidAmount;
+   invalidUpiId;
+ };
+type Wallet = 
+ record {
+   balance: nat;
+   reelEarnings: nat;
+   referralCode: text;
+   referralEarnings: nat;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserSummary = 
+ record {
+   avatarUrl: opt text;
+   displayName: text;
+   followerCount: nat;
+   followingCount: nat;
+   id: UserId;
+   isFollowing: bool;
+   username: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   avatarUrl: opt text;
+   bio: text;
+   createdAt: Timestamp;
+   displayName: text;
+   id: UserId;
+   username: text;
+ };
+type UserId = principal;
+type UserError = 
+ variant {
+   invalidUsername;
+   notAuthorized;
+   notFound;
+   usernameTaken;
+ };
+type TransactionStatus = 
+ variant {
+   completed;
+   failed;
+   pending;
+ };
+type TransactionKind = 
+ variant {
+   reelBonus;
+   referralBonus;
+   withdrawal;
+ };
+type TransactionId = nat;
+type Transaction = 
+ record {
+   amount: nat;
+   createdAt: Timestamp;
+   id: TransactionId;
+   kind: TransactionKind;
+   status: TransactionStatus;
+ };
+type Timestamp = int;
+type SoundResult = 
+ record {
+   reelCount: nat;
+   soundLabel: text;
+ };
+type SocialError = 
+ variant {
+   cannotFollowSelf;
+   notAuthorized;
+   notFound;
+ };
+type SearchResults = 
+ record {
+   hashtags: vec HashtagResult;
+   reels: vec ReelId;
+   sounds: vec SoundResult;
+   users: vec UserId;
+ };
+type SearchFilter = 
+ variant {
+   all;
+   hashtags;
+   reels;
+   sounds;
+   users;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ReelView = 
+ record {
+   allowComments: bool;
+   allowDuet: bool;
+   audience: Audience;
+   caption: text;
+   commentCount: nat;
+   createdAt: Timestamp;
+   creator: UserId;
+   creatorAvatarUrl: opt text;
+   creatorDisplayName: text;
+   creatorUsername: text;
+   hashtags: vec text;
+   id: ReelId;
+   isLiked: bool;
+   likeCount: nat;
+   location: opt text;
+   mediaUrl: text;
+   soundLabel: opt text;
+   thumbnailUrl: opt text;
+ };
+type ReelId = nat;
+type ReelError = 
+ variant {
+   commentsDisabled;
+   notAuthorized;
+   notFound;
+ };
+type Reel = 
+ record {
+   allowComments: bool;
+   allowDuet: bool;
+   audience: Audience;
+   caption: text;
+   createdAt: Timestamp;
+   creator: UserId;
+   hashtags: vec text;
+   id: ReelId;
+   location: opt text;
+   mediaUrl: text;
+   soundLabel: opt text;
+   thumbnailUrl: opt text;
+ };
+type ProfileUpdate = 
+ record {
+   avatarUrl: opt text;
+   bio: opt text;
+   displayName: opt text;
+   username: opt text;
+ };
+type HashtagResult = 
+ record {
+   reelCount: nat;
+   tag: text;
+ };
+type FollowState = 
+ record {
+   followerCount: nat;
+   followingCount: nat;
+   isFollowing: bool;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DraftInput = 
+ record {
+   allowComments: bool;
+   allowDuet: bool;
+   audience: Audience;
+   caption: text;
+   hashtags: vec text;
+   location: opt text;
+   mediaUrl: opt text;
+   soundLabel: opt text;
+   thumbnailUrl: opt text;
+ };
+type DraftId = nat;
+type DraftError = 
+ variant {
+   notAuthorized;
+   notFound;
+ };
+type Draft = 
+ record {
+   allowComments: bool;
+   allowDuet: bool;
+   audience: Audience;
+   caption: text;
+   createdAt: Timestamp;
+   hashtags: vec text;
+   id: DraftId;
+   location: opt text;
+   mediaUrl: opt text;
+   owner: UserId;
+   soundLabel: opt text;
+   thumbnailUrl: opt text;
+   updatedAt: Timestamp;
+ };
+type CreateReelInput = 
+ record {
+   allowComments: bool;
+   allowDuet: bool;
+   audience: Audience;
+   caption: text;
+   hashtags: vec text;
+   location: opt text;
+   mediaUrl: text;
+   soundLabel: opt text;
+   thumbnailUrl: opt text;
+ };
+type CommentView = 
+ record {
+   author: UserId;
+   authorAvatarUrl: opt text;
+   authorDisplayName: text;
+   authorUsername: text;
+   createdAt: Timestamp;
+   id: CommentId;
+   isLiked: bool;
+   likeCount: nat;
+   reelId: ReelId;
+   "text": text;
+ };
+type CommentId = nat;
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type Audience = 
+ variant {
+   everyone;
+   followers;
+ };
+type ActivityKind = 
+ variant {
+   comment;
+   follow;
+   like;
+   mention;
+ };
+type Activity = 
+ record {
+   actorAvatarUrl: opt text;
+   actorDisplayName: text;
+   actorId: UserId;
+   actorUsername: text;
+   commentId: opt CommentId;
+   createdAt: Timestamp;
+   id: nat;
+   kind: ActivityKind;
+   preview: opt text;
+   reelId: opt ReelId;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  addComment: (reelId: nat, "text": text) ->
+   (variant {
+      err: SocialError;
+      ok: CommentView;
+    });
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createProfile: (username: text, displayName: text, bio: text, avatarUrl:
+   opt text) -> (variant {
+                   err: UserError;
+                   ok: UserProfile;
+                 });
+  createReel: (input: CreateReelInput) ->
+   (variant {
+      err: ReelError;
+      ok: Reel;
+    });
+  deleteDraft: (draftId: nat) -> (variant {
+                                    err: DraftError;
+                                    ok;
+                                  });
+  execute: (qJson: text) -> (Result) query;
+  follow: (user: principal) -> (variant {
+                                  err: SocialError;
+                                  ok: FollowState;
+                                });
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getFollowState: (user: principal) -> (FollowState) query;
+  getProfile: (user: principal) -> (opt UserProfile) query;
+  getProfileByUsername: (username: text) -> (opt UserProfile) query;
+  getReel: (id: nat) -> (opt ReelView) query;
+  getReelForCaller: (id: nat) -> (opt ReelView) query;
+  getReelLikeState: (reelId: nat) ->
+   (record {
+      isLiked: bool;
+      likeCount: nat;
+    }) query;
+  getUserSummary: (user: principal) -> (opt UserSummary) query;
+  getWallet: () -> (Wallet) query;
+  isCallerAdmin: () -> (bool) query;
+  listActivity: (kind: opt ActivityKind) -> (vec Activity) query;
+  listComments: (reelId: nat) -> (vec CommentView) query;
+  listDrafts: () -> (vec Draft) query;
+  listFollowers: (user: principal) -> (vec principal) query;
+  listFollowing: (user: principal) -> (vec principal) query;
+  listFollowingFeed: () -> (vec ReelView) query;
+  listForYouFeed: () -> (vec ReelView) query;
+  listReelsByUser: (user: principal) -> (vec ReelView) query;
+  listTransactions: () -> (vec Transaction) query;
+  reelsByHashtag: (tag: text) -> (vec nat) query;
+  reelsBySound: (soundLabel: text) -> (vec nat) query;
+  requestWithdrawal: (request: WithdrawalRequest) ->
+   (variant {
+      err: WalletError;
+      ok: Transaction;
+    });
+  saveDraft: (draftId: opt nat, input: DraftInput) ->
+   (variant {
+      err: DraftError;
+      ok: Draft;
+    });
+  schema: () -> (text) query;
+  search: (filter: SearchFilter, term: text) -> (SearchResults) query;
+  toggleCommentLike: (commentId: nat) ->
+   (variant {
+      err: SocialError;
+      ok: bool;
+    });
+  toggleReelLike: (reelId: nat) -> (variant {
+                                      err: SocialError;
+                                      ok: bool;
+                                    });
+  trendingHashtags: (limit: nat) -> (vec HashtagResult) query;
+  unfollow: (user: principal) ->
+   (variant {
+      err: SocialError;
+      ok: FollowState;
+    });
+  updateProfile: (update: ProfileUpdate) ->
+   (variant {
+      err: UserError;
+      ok: UserProfile;
+    });
+}

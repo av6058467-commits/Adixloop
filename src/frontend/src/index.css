@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 1rem;
+
+    /* Light mode — soft neutral studio, neon accents preserved */
+    --background: 0.97 0.006 300;
+    --foreground: 0.17 0.02 285;
+    --card: 1.0 0.004 300;
+    --card-foreground: 0.17 0.02 285;
+    --popover: 1.0 0.004 300;
+    --popover-foreground: 0.17 0.02 285;
+
+    --primary: 0.63 0.27 356;
+    --primary-foreground: 0.99 0.005 356;
+
+    --secondary: 0.94 0.012 300;
+    --secondary-foreground: 0.28 0.02 285;
+    --muted: 0.94 0.012 300;
+    --muted-foreground: 0.5 0.015 285;
+
+    --accent: 0.72 0.15 220;
+    --accent-foreground: 0.16 0.02 220;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.99 0.005 25;
+
+    --success: 0.62 0.17 155;
+    --warning: 0.75 0.15 80;
+
+    --border: 0.9 0.01 300;
+    --input: 0.9 0.01 300;
+    --ring: 0.63 0.27 356;
+
+    --chart-1: 0.63 0.27 356;
+    --chart-2: 0.72 0.15 220;
+    --chart-3: 0.68 0.19 300;
+    --chart-4: 0.62 0.17 155;
+    --chart-5: 0.75 0.15 80;
+
+    --sidebar: 0.95 0.008 300;
+    --sidebar-foreground: 0.17 0.02 285;
+    --sidebar-primary: 0.63 0.27 356;
+    --sidebar-primary-foreground: 0.99 0.005 356;
+    --sidebar-accent: 0.94 0.012 300;
+    --sidebar-accent-foreground: 0.28 0.02 285;
+    --sidebar-border: 0.9 0.01 300;
+    --sidebar-ring: 0.63 0.27 356;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.63 0.27 356),
+      oklch(0.68 0.22 320)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.63 0.27 356 / 0.12),
+      oklch(0.72 0.15 220 / 0.06)
+    );
+    --gradient-rail: linear-gradient(
+      180deg,
+      transparent,
+      oklch(0.1 0.01 285 / 0.85)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Neon Nocturne — deep navy-black canvas */
+    --background: 0.13 0.018 285;
+    --foreground: 0.96 0.008 300;
+    --card: 0.17 0.022 285;
+    --card-foreground: 0.96 0.008 300;
+    --popover: 0.19 0.024 285;
+    --popover-foreground: 0.96 0.008 300;
+
+    /* Neon pink #FF007F */
+    --primary: 0.66 0.28 357;
+    --primary-foreground: 0.99 0.005 357;
+
+    --secondary: 0.22 0.026 285;
+    --secondary-foreground: 0.88 0.01 300;
+    --muted: 0.21 0.024 285;
+    --muted-foreground: 0.64 0.018 290;
+
+    /* Neon blue #00D2FF */
+    --accent: 0.8 0.14 220;
+    --accent-foreground: 0.14 0.02 220;
+
+    --destructive: 0.62 0.2 22;
+    --destructive-foreground: 0.97 0.005 22;
+
+    --success: 0.7 0.16 158;
+    --warning: 0.78 0.15 82;
+
+    --border: 0.27 0.024 285;
+    --input: 0.27 0.024 285;
+    --ring: 0.66 0.28 357;
+
+    --chart-1: 0.66 0.28 357;
+    --chart-2: 0.8 0.14 220;
+    --chart-3: 0.7 0.2 300;
+    --chart-4: 0.7 0.16 158;
+    --chart-5: 0.78 0.15 82;
+
+    --sidebar: 0.16 0.022 285;
+    --sidebar-foreground: 0.96 0.008 300;
+    --sidebar-primary: 0.66 0.28 357;
+    --sidebar-primary-foreground: 0.99 0.005 357;
+    --sidebar-accent: 0.22 0.026 285;
+    --sidebar-accent-foreground: 0.88 0.01 300;
+    --sidebar-border: 0.27 0.024 285;
+    --sidebar-ring: 0.66 0.28 357;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.66 0.28 357),
+      oklch(0.7 0.22 318)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.66 0.28 357 / 0.14),
+      oklch(0.8 0.14 220 / 0.06)
+    );
+    --gradient-rail: linear-gradient(
+      180deg,
+      transparent,
+      oklch(0.08 0.012 285 / 0.9)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .bg-gradient-rail {
+    background-image: var(--gradient-rail);
+  }
+  .text-gradient-primary {
+    background-image: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .snap-reel {
+    scroll-snap-type: y mandatory;
+  }
+  .snap-reel-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}

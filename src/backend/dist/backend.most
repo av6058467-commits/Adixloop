@@ -1,0 +1,344 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type ActivityKind__530755717 = ActivityKind__966777251;
+type ActivityKind__966777251 = {#comment; #follow; #like; #mention};
+type Activity__82003189 = Activity__832405399;
+type Activity__832405399 =
+  {
+    actorAvatarUrl : ?Text;
+    actorDisplayName : Text;
+    actorId : UserId__944037060;
+    actorUsername : Text;
+    commentId : ?CommentId__860019403;
+    createdAt : Timestamp__290667340;
+    id : Nat;
+    kind : ActivityKind__530755717;
+    preview : ?Text;
+    reelId : ?ReelId__480915562
+  };
+type Audience__1055442000 = Audience__186001426;
+type Audience__11958820 = Audience__186001426;
+type Audience__186001426 = {#everyone; #followers};
+type CommentId__240561969 = CommentId__821569710;
+type CommentId__821569710 = Nat;
+type CommentId__860019403 = CommentId__821569710;
+type Comment__356124732 = Comment__549067859;
+type Comment__549067859 =
+  {
+    author : UserId__870129387;
+    createdAt : Timestamp__884532980;
+    id : CommentId__240561969;
+    reelId : ReelId__154709415;
+    text : Text
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type Data__846125122<T> = {var count : Nat__227979830; elements : [var ?T]};
+type DraftId__217231524 = Nat;
+type DraftId__237318769 = DraftId__217231524;
+type Draft__139483598 =
+  {
+    allowComments : Bool;
+    allowDuet : Bool;
+    audience : Audience__11958820;
+    caption : Text;
+    createdAt : Timestamp__711174263;
+    hashtags : [Text];
+    id : DraftId__237318769;
+    location : ?Text;
+    mediaUrl : ?Text;
+    owner : UserId__859088249;
+    soundLabel : ?Text;
+    thumbnailUrl : ?Text;
+    updatedAt : Timestamp__711174263
+  };
+type Draft__281092362 = Draft__139483598;
+type Internal__23036296<T> =
+  {children : [var ?Node__620761243<T>]; data : Data__846125122<T>};
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type Leaf__948582970<T> = {data : Data__846125122<T>};
+type List__355132335<T> =
+  {
+    var blockIndex : Nat__227979830;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__227979830
+  };
+type List__836382695<T> = List__355132335<T>;
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__793188255 =
+  {
+    accessControlState : AccessControlState__201339279;
+    draftState :
+      {
+        byOwner : Map__230067015<Principal, List__836382695<Nat>>;
+        drafts :
+          Map__230067015<Nat,
+                          {
+                            allowComments : Bool;
+                            allowDuet : Bool;
+                            audience : {#everyone; #followers};
+                            caption : Text;
+                            createdAt : Int;
+                            hashtags : [Text];
+                            id : Nat;
+                            location : ?Text;
+                            mediaUrl : ?Text;
+                            owner : Principal;
+                            soundLabel : ?Text;
+                            thumbnailUrl : ?Text;
+                            updatedAt : Int
+                          }>;
+        var nextDraftId : Nat
+      };
+    inboxState :
+      {
+        activities :
+          Map__230067015<Principal,
+                          List__836382695<{
+                                            actorAvatarUrl : ?Text;
+                                            actorDisplayName : Text;
+                                            actorId : Principal;
+                                            actorUsername : Text;
+                                            commentId : ?Nat;
+                                            createdAt : Int;
+                                            id : Nat;
+                                            kind :
+                                              {
+                                                #comment;
+                                                #follow;
+                                                #like;
+                                                #mention
+                                              };
+                                            preview : ?Text;
+                                            reelId : ?Nat
+                                          }>>;
+        var nextActivityId : Nat
+      };
+    reelState :
+      {
+        byCreator : Map__230067015<Principal, List__836382695<Nat>>;
+        var nextReelId : Nat;
+        reels :
+          Map__230067015<Nat,
+                          {
+                            allowComments : Bool;
+                            allowDuet : Bool;
+                            audience : {#everyone; #followers};
+                            caption : Text;
+                            createdAt : Int;
+                            creator : Principal;
+                            hashtags : [Text];
+                            id : Nat;
+                            location : ?Text;
+                            mediaUrl : Text;
+                            soundLabel : ?Text;
+                            thumbnailUrl : ?Text
+                          }>
+      };
+    searchState :
+      {
+        hashtags : Map__230067015<Text, List__836382695<Nat>>;
+        sounds : Map__230067015<Text, List__836382695<Nat>>
+      };
+    socialState :
+      {
+        commentLikes : Map__230067015<Nat, Set__70493310<Principal>>;
+        comments :
+          Map__230067015<Nat,
+                          {
+                            author : Principal;
+                            createdAt : Int;
+                            id : Nat;
+                            reelId : Nat;
+                            text : Text
+                          }>;
+        commentsByReel : Map__230067015<Nat, List__836382695<Nat>>;
+        followers : Map__230067015<Principal, Set__70493310<Principal>>;
+        following : Map__230067015<Principal, Set__70493310<Principal>>;
+        var nextCommentId : Nat;
+        reelLikes : Map__230067015<Nat, Set__70493310<Principal>>
+      };
+    userState :
+      {
+        var nextActivityId : Nat;
+        profiles :
+          Map__230067015<Principal,
+                          {
+                            avatarUrl : ?Text;
+                            bio : Text;
+                            createdAt : Int;
+                            displayName : Text;
+                            id : Principal;
+                            username : Text
+                          }>;
+        usernames : Map__230067015<Text, Principal>
+      };
+    walletState :
+      {
+        var nextTransactionId : Nat;
+        transactions :
+          Map__230067015<Principal,
+                          List__836382695<{
+                                            amount : Nat;
+                                            createdAt : Int;
+                                            id : Nat;
+                                            kind :
+                                              {
+                                                #reelBonus;
+                                                #referralBonus;
+                                                #withdrawal
+                                              };
+                                            status :
+                                              {#completed; #failed; #pending}
+                                          }>>;
+        wallets :
+          Map__230067015<Principal,
+                          {
+                            balance : Nat;
+                            reelEarnings : Nat;
+                            referralCode : Text;
+                            referralEarnings : Nat
+                          }>
+      }
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type Node__620761243<T> =
+  {#internal : Internal__23036296<T>; #leaf : Leaf__948582970<T>};
+type OldActor__904324871 = {};
+type ReelId__154709415 = ReelId__213195052;
+type ReelId__213195052 = Nat;
+type ReelId__480915562 = ReelId__213195052;
+type ReelId__86414445 = ReelId__213195052;
+type Reel__330002137 = Reel__790301563;
+type Reel__790301563 =
+  {
+    allowComments : Bool;
+    allowDuet : Bool;
+    audience : Audience__1055442000;
+    caption : Text;
+    createdAt : Timestamp__950050629;
+    creator : UserId__573857669;
+    hashtags : [Text];
+    id : ReelId__86414445;
+    location : ?Text;
+    mediaUrl : Text;
+    soundLabel : ?Text;
+    thumbnailUrl : ?Text
+  };
+type Set__1053317950<T> =
+  {var root : Node__620761243<T>; var size : Nat__227979830};
+type Set__70493310<T> = Set__1053317950<T>;
+type Timestamp__290667340 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type Timestamp__600497786 = Timestamp__301639476;
+type Timestamp__711174263 = Timestamp__301639476;
+type Timestamp__778030842 = Timestamp__301639476;
+type Timestamp__884532980 = Timestamp__301639476;
+type Timestamp__950050629 = Timestamp__301639476;
+type TransactionId__138870153 = Nat;
+type TransactionId__359028830 = TransactionId__138870153;
+type TransactionKind__247017751 = {#reelBonus; #referralBonus; #withdrawal};
+type TransactionKind__283072304 = TransactionKind__247017751;
+type TransactionStatus__203262454 = {#completed; #failed; #pending};
+type TransactionStatus__52851611 = TransactionStatus__203262454;
+type Transaction__15087323 =
+  {
+    amount : Nat;
+    createdAt : Timestamp__600497786;
+    id : TransactionId__359028830;
+    kind : TransactionKind__283072304;
+    status : TransactionStatus__52851611
+  };
+type Transaction__196304035 = Transaction__15087323;
+type UserId__1043627770 = UserId__158757552;
+type UserId__158757552 = Principal;
+type UserId__573857669 = UserId__158757552;
+type UserId__859088249 = UserId__158757552;
+type UserId__870129387 = UserId__158757552;
+type UserId__944037060 = UserId__158757552;
+type UserProfile__104081004 = UserProfile__277265826;
+type UserProfile__277265826 =
+  {
+    avatarUrl : ?Text;
+    bio : Text;
+    createdAt : Timestamp__778030842;
+    displayName : Text;
+    id : UserId__1043627770;
+    username : Text
+  };
+type UserRole__91647283 = {#admin; #guest; #user};
+type Wallet__153140325 = Wallet__955312146;
+type Wallet__955312146 =
+  {
+    balance : Nat;
+    reelEarnings : Nat;
+    referralCode : Text;
+    referralEarnings : Nat
+  };
+{
+  "20261004_000000" : OldActor__904324871 -> NewActor__793188255
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable draftState :
+    {
+      byOwner : Map__230067015<Principal, List__836382695<Nat>>;
+      drafts : Map__230067015<Nat, Draft__281092362>;
+      var nextDraftId : Nat
+    };
+  stable inboxState :
+    {
+      activities :
+        Map__230067015<Principal, List__836382695<Activity__82003189>>;
+      var nextActivityId : Nat
+    };
+  stable reelState :
+    {
+      byCreator : Map__230067015<Principal, List__836382695<Nat>>;
+      var nextReelId : Nat;
+      reels : Map__230067015<Nat, Reel__330002137>
+    };
+  stable searchState :
+    {
+      hashtags : Map__230067015<Text, List__836382695<Nat>>;
+      sounds : Map__230067015<Text, List__836382695<Nat>>
+    };
+  stable socialState :
+    {
+      commentLikes : Map__230067015<Nat, Set__70493310<Principal>>;
+      comments : Map__230067015<Nat, Comment__356124732>;
+      commentsByReel : Map__230067015<Nat, List__836382695<Nat>>;
+      followers : Map__230067015<Principal, Set__70493310<Principal>>;
+      following : Map__230067015<Principal, Set__70493310<Principal>>;
+      var nextCommentId : Nat;
+      reelLikes : Map__230067015<Nat, Set__70493310<Principal>>
+    };
+  stable userState :
+    {
+      var nextActivityId : Nat;
+      profiles : Map__230067015<Principal, UserProfile__104081004>;
+      usernames : Map__230067015<Text, Principal>
+    };
+  stable walletState :
+    {
+      var nextTransactionId : Nat;
+      transactions :
+        Map__230067015<Principal, List__836382695<Transaction__196304035>>;
+      wallets : Map__230067015<Principal, Wallet__153140325>
+    }
+};

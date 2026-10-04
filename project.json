@@ -1,0 +1,22 @@
+{
+  "overview": "AdixLoop is a dark neon-pink short-form video social app where people browse, create, and share reels.",
+  "features": [
+    "Full-screen vertical reels feed with Following and For You tabs",
+    "Like, comment, share, and follow creators",
+    "Search and discover users, reels, sounds, and trending hashtags",
+    "Upload and post reels with captions, hashtags, and audience options",
+    "Creator profiles with posts, followers, and following",
+    "Inbox with likes, comments, followers, and mentions",
+    "Wallet with earnings, referral code, and UPI withdrawal requests",
+    "Settings with dark/light appearance and account options"
+  ],
+  "category": "social",
+  "tags": [
+    "social",
+    "video",
+    "reels",
+    "mobile-first",
+    "dark-theme"
+  ],
+  "last_updated": "2026-10-04T10:08:31.774Z"
+}
